@@ -61,7 +61,7 @@ module.exports.login = function(req, res, done) {
            res.send({success: false, error: {text: "There was an error on login.", error: err}});
        }
        else if (!foundUser) {
-           res.send({sucess: false, error: {text: "User does not exist."}});
+           res.send({success: false, error: {text: "User does not exist."}});
        }
        else {
             if (foundUser.password == password) {
@@ -69,7 +69,7 @@ module.exports.login = function(req, res, done) {
                 res.send({success: true, user: {username: username, hash: hash}});
             }
             else {
-                res.send({sucess: false, error: {text: "Wrong password."}});
+                res.send({success: false, error: {text: "Wrong password."}});
             }
        }
     });
@@ -127,10 +127,10 @@ module.exports.doLogin = function(req, res, done) {
 
 module.exports.test = function(req, res, done) {
     if (req.user) {
-        res.send({sucess: true, message: "Authenticated as " + req.user.username + ", email address: " + req.user.email});
+        res.send({success: true, message: "Authenticated as " + req.user.username + ", email address: " + req.user.email});
     }
     else {
-        res.send({sucess: true, message: "No user authenticated"});
+        res.send({success: true, message: "No user authenticated"});
     }
 }
 
@@ -162,10 +162,10 @@ module.exports.get = function(req, res, done) {
         function(next) {
             User.findOne({username: username}, function(err, foundUser) {
                 if (err) {
-                    res.send({sucess: false, error: {text: "Error while getting user profile.", err: err}});
+                    res.send({success: false, error: {text: "Error while getting user profile.", err: err}});
                 }
                 else if (!foundUser) {
-                    res.send({sucess: false, error: {text: "User not found."}})
+                    res.send({success: false, error: {text: "User not found."}})
                 }
                 else {
                     var userObject = foundUser.toObject();

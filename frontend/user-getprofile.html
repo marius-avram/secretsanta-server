@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+
+    $("#getprofile").click(function(){
+    	$.ajax({
+            url:"https://mpsit-marius-avram1309.c9users.io/member/get?" + "username=" + $("#username").val(),
+            type: "GET",
+            beforeSend: function(xhr){
+                xhr.setRequestHeader("username", getCookie("username")); 
+                xhr.setRequestHeader("hash", getCookie("hash"));
+            },
+            success: function(data) {
+                var responsestring = JSON.stringify(data);
+                var responsebody = $.parseJSON(responsestring);
+            
+                if (responsebody.success === true) {
+                    var userstring = JSON.stringify(responsebody.user);
+                    var userinfo = $.parseJSON(userstring);
+                    
+                    $("#userinfo").html("<p>First Name: " + userinfo.firstname + "<br>Last Name: " + 
+                        userinfo.lastname + "<br>Username: " + userinfo.username + "<br>Email: " + userinfo.email + "</p>");
+                }
+                else {
+                    var errorstring = JSON.stringify(responsebody.error);
+                    var errorinfo = $.parseJSON(errorstring);
+                    alert(errorinfo.text);
+                }
+             }
+        });
+    });
+})
+</script>
+</head>
+
+<body>
+
+<p>Username:
+<input type="text" name="username" id="username"> <button id="getprofile">Get Profile</button> </p>
+<div id=userinfo></div>
+
+</body>
+</html>

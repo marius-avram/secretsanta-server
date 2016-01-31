@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    
+	$("#login").submit(function(event) {
+
+		$.ajax({
+            url: $(this).attr('action'),
+            type: $(this).attr('method'),
+            data: $(this).serialize(),
+            success: function(data) {
+                var responsestring = JSON.stringify(data);
+                var responsebody = $.parseJSON(responsestring);
+             
+                if (responsebody.success === true) {
+                    var userstring = JSON.stringify(responsebody.user);
+                    var userinfo = $.parseJSON(userstring);
+                    document.cookie="username=" + userinfo.username + "; path=/";
+                    document.cookie="hash=" + userinfo.hash + "; path=/";
+//                    alert(getCookie("username") + " " + getCookie("hash"));
+                }
+                else {
+                    var errorstring = JSON.stringify(responsebody.error);
+                    var errorinfo = $.parseJSON(errorstring);
+                    alert(errorinfo.text);
+                }
+            }
+        });
+        
+        event.preventDefault();
+
+	});
+})
+</script>
+</head>
+
+<body>
+
+<form id="login" action="https://mpsit-marius-avram1309.c9users.io/user/login" method="post">
+  <fieldset>
+    <legend>User Login:</legend>
+	Username:<br>
+    <input type="text" name="username" id="username" required><br><br>
+	Password:<br>
+    <input type="password" name="password" id="password" required><br><br>
+	<input type="submit" value="Login" id="submit">
+  </fieldset>
+</form>
+
+</body>
+</html>

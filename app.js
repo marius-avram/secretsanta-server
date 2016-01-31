@@ -14,6 +14,38 @@ var app = express();
 
 app.use(body_parser());
 
+//HTML frontend forms
+
+app.get('/login', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "user-login.html" );
+});
+
+app.get('/register', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "user-register.html" );
+});
+
+app.get('/auth-get', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "user-auth-get.html" );
+});
+
+app.get('/auth-headers', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "user-auth-headers.html" );
+});
+
+app.get('/auth-post', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "user-auth-post.html" );
+});
+
+app.get('/myprofile', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "user-myprofile.html" );
+});
+
+app.get('/getprofile', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "user-getprofile.html" );
+});
+
+
+
 app.use("/member/*", function(req, res, next) {
     user.doLogin(req, res, next);
 });
@@ -69,4 +101,3 @@ process.on ('uncaughtException', function (err)
     console.log('Error found:');
     console.log(err); 
 });
-
