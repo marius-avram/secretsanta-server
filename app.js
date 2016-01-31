@@ -44,6 +44,18 @@ app.get('/getprofile', function (req, res) {
    res.sendFile( __dirname + "/frontend/" + "user-getprofile.html" );
 });
 
+app.get('/groupregister', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "group-register.html" );
+});
+
+app.get('/mygroups', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "group-mygroups.html" );
+});
+
+app.get('/searchgroups', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "group-searchgroups.html" );
+});
+
 
 
 app.use("/member/*", function(req, res, next) {
