@@ -37,61 +37,67 @@ $(document).ready(function(){
                         var groupstring = JSON.stringify(value);
                         var groupinfo = $.parseJSON(groupstring);
 
-                        $("#groupsinfo").append("<p>Name: " + groupinfo.name + " <button id=\"joinbutton" + index + "\">Join</button>"
-                            + " <button id=\"shufflebutton" + index + "\">Shuffle</button>" + 
-                            "<br>Member Limit: " + groupinfo.memberLimit + "</p>");
-                            
-                        $("#joinbutton" + index).click(function(){
-                            var groupid = groupinfo._id;
-                            
-                            
-                            $.ajax({
-                                url:"https://mpsit-marius-avram1309.c9users.io/member/group/join",
-                                type: "POST",
-                                beforeSend: function(xhr){
-                                    xhr.setRequestHeader("username", getCookie("username")); 
-                                    xhr.setRequestHeader("hash", getCookie("hash"));
-                                },
-                                data: "id=" + groupid,
-                                success: function(data) {
-                                    var responsestring = JSON.stringify(data);
-                                    var responsebody = $.parseJSON(responsestring);
-        
-                                    if (responsebody.success === true) {
-                                    }
-                                    else {
-                                        var errorstring = JSON.stringify(responsebody.error);
-                                        var errorinfo = $.parseJSON(errorstring);
-                                        alert(errorinfo.text);
-                                    }
-                                }
-                            });
-                        });
+                        $("#groupsinfo").append("<p>Name: " + groupinfo.name + " <button id=\"detailsbutton" + index + "\">Details</button>"
+                             + "</p>");
                         
-                        $("#shufflebutton" + index).click(function(){
+                        $("#detailsbutton" + index).click(function(){
+                            $("#groupsinfo").html("");
+                            var groupname = groupinfo.name;
+                            var memberlimit = groupinfo.memberLimit;
                             var groupid = groupinfo._id;
+                            var groupindex = index;
                             
-                            
-                            $.ajax({
-                                url:"https://mpsit-marius-avram1309.c9users.io/member/group/shuffle",
-                                type: "POST",
-                                beforeSend: function(xhr){
-                                    xhr.setRequestHeader("username", getCookie("username")); 
-                                    xhr.setRequestHeader("hash", getCookie("hash"));
-                                },
-                                data: "id=" + groupid,
-                                success: function(data) {
-                                    var responsestring = JSON.stringify(data);
-                                    var responsebody = $.parseJSON(responsestring);
+                            $("#groupsinfo").append("<button id=\"joinbutton" + groupindex + "\">Join</button>"
+                                + " <button id=\"shufflebutton" + groupindex + "\">Shuffle</button>");
+                            $("#groupsinfo").append("<p>Name: " + groupname + "<br>Member Limit: " + memberlimit + "</p>");
+                            $("#groupsinfo").append("<p>Members: " + groupinfo.members + "</p>");
+                            $("#groupsinfo").append("<p>Give To: " + groupinfo.giveTo + "</p>");
+
+                            $("#joinbutton" + groupindex).click(function(){
+                                $.ajax({
+                                    url:"https://mpsit-marius-avram1309.c9users.io/member/group/join",
+                                    type: "POST",
+                                    beforeSend: function(xhr){
+                                        xhr.setRequestHeader("username", getCookie("username")); 
+                                        xhr.setRequestHeader("hash", getCookie("hash"));
+                                    },
+                                    data: "id=" + groupid,
+                                    success: function(data) {
+                                        var responsestring = JSON.stringify(data);
+                                        var responsebody = $.parseJSON(responsestring);
         
-                                    if (responsebody.success === true) {
+                                        if (responsebody.success === true) {
+                                        }
+                                        else {
+                                            var errorstring = JSON.stringify(responsebody.error);
+                                            var errorinfo = $.parseJSON(errorstring);
+                                            alert(errorinfo.text);
+                                        }
                                     }
-                                    else {
-                                        var errorstring = JSON.stringify(responsebody.error);
-                                        var errorinfo = $.parseJSON(errorstring);
-                                        alert(errorinfo.text);
+                                });
+                            });
+                            $("#shufflebutton" + groupindex).click(function(){
+                                $.ajax({
+                                    url:"https://mpsit-marius-avram1309.c9users.io/member/group/shuffle",
+                                    type: "POST",
+                                    beforeSend: function(xhr){
+                                        xhr.setRequestHeader("username", getCookie("username")); 
+                                        xhr.setRequestHeader("hash", getCookie("hash"));
+                                    },
+                                    data: "id=" + groupid,
+                                    success: function(data) {
+                                        var responsestring = JSON.stringify(data);
+                                        var responsebody = $.parseJSON(responsestring);
+        
+                                        if (responsebody.success === true) {
+                                        }
+                                        else {
+                                            var errorstring = JSON.stringify(responsebody.error);
+                                            var errorinfo = $.parseJSON(errorstring);
+                                            alert(errorinfo.text);
+                                        }
                                     }
-                                }
+                                });
                             });
                         });
                     });
