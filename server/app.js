@@ -106,6 +106,10 @@ app.post("/member/group/join", group.join);
 app.post("/member/group/shuffle", group.shuffle);
 
 
+// Add static route to API documentation
+app.use("/docs", express.static(__dirname + '/../docs'));
+
+
 // Default route returns error
 app.use(function(req, res) {
     res.send({success: false, error: {text: "Page not found."}});

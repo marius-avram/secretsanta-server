@@ -1,0 +1,15 @@
+{
+  "name": "secretsanta-server",
+  "version": "1.0.0",
+  "description": "Secret Santa REST service",
+  "title": "Secret Santa REST service",
+  "url" : "https://mpsit-marius-avram1309.c9users.io",
+  "order": [
+    "User",
+    "Group"
+  ],
+  "template": {
+  	"withCompare": true,
+  	"withGenerator": true
+  }
+}
