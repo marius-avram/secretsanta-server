@@ -3,6 +3,7 @@
 var express = require("express");
 var body_parser = require("body-parser");
 var mongoose = require("mongoose");
+var path = require('path');
 var user = require("./services/user");
 var group = require("./services/group");
 
@@ -16,54 +17,56 @@ app.use(body_parser());
 
 //HTML frontend forms
 
-app.get('/', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "main-page.html" );
-});
-
-app.get('/myaccount', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "myaccount.html" );
-});
-
 app.get('/login', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "user-login.html" );
+   res.sendFile(path.resolve(__dirname + "/../frontend/user-login.html"));
 });
 
 app.get('/register', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "user-register.html" );
+   res.sendFile(path.resolve(__dirname + "/../frontend/user-register.html"));
 });
 
 app.get('/auth-get', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "user-auth-get.html" );
+   res.sendFile(path.resolve(__dirname + "/../frontend/user-auth-get.html"));
 });
 
 app.get('/auth-headers', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "user-auth-headers.html" );
+   res.sendFile(path.resolve(__dirname + "/../frontend/user-auth-headers.html"));
 });
 
 app.get('/auth-post', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "user-auth-post.html" );
+   res.sendFile(path.resolve(__dirname + "/../frontend/user-auth-post.html"));
 });
 
 app.get('/myprofile', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "user-myprofile.html" );
-});
-
-app.get('/getprofile', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "user-getprofile.html" );
-});
-
-app.get('/groupregister', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "group-register.html" );
+   res.sendFile(path.resolve(__dirname + "/../frontend/user-myprofile.html"));
 });
 
 app.get('/mygroups', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "group-mygroups.html" );
+   res.sendFile(path.resolve(__dirname + "/../frontend/group-mygroups.html"));
+});
+
+app.get('/getprofile', function (req, res) {
+   res.sendFile(path.resolve(__dirname + "/../frontend/user-getprofile.html"));
 });
 
 app.get('/searchgroups', function (req, res) {
-   res.sendFile( __dirname + "/frontend/" + "group-searchgroups.html" );
+   res.sendFile(path.resolve(__dirname + "/../frontend/group-searchgroups.html"));
 });
 
+app.get('/groupregister', function (req, res) {
+   res.sendFile(path.resolve(__dirname + "/../frontend/group-register.html"));
+});
+
+
+
+
+app.get('/', function (req, res) {
+   res.sendFile(path.resolve(__dirname + "/../frontend/main-page.html"));
+});
+
+app.get('/myaccount', function (req, res) {
+   res.sendFile(path.resolve(__dirname + "/../frontend/myaccount.html"));
+});
 
 
 app.use("/member/*", function(req, res, next) {
