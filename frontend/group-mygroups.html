@@ -16,7 +16,7 @@ $(document).ready(function(){
         return "";
     }
 
-    $("#mygroups").click(function(){
+
     	$.ajax({
             url:"https://mpsit-marius-avram1309.c9users.io/member/groups/own",
             type: "GET",
@@ -47,14 +47,13 @@ $(document).ready(function(){
                 }
              }
         });
-    });
+
 })
 </script>
 </head>
 
 <body>
 
-<button id="mygroups">My Groups</button>
 <div id=mygroupsinfo></div>
 
 </body>

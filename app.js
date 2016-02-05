@@ -16,6 +16,14 @@ app.use(body_parser());
 
 //HTML frontend forms
 
+app.get('/', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "main-page.html" );
+});
+
+app.get('/myaccount', function (req, res) {
+   res.sendFile( __dirname + "/frontend/" + "myaccount.html" );
+});
+
 app.get('/login', function (req, res) {
    res.sendFile( __dirname + "/frontend/" + "user-login.html" );
 });

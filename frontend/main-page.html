@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    
+    function getCookie(cname) {
+        var name = cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i=0; i<ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0)==' ') c = c.substring(1);
+            if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+        }
+        return "";
+    }
+    
+    if (getCookie("loginsuccessful") === "true") {
+        window.location.href = "https://mpsit-marius-avram1309.c9users.io/myaccount";
+    }
+
+})
+</script>
+</head>
+
+<body style="height:100%">
+
+<h1>Secret Santa</h1>
+
+<iframe src="https://mpsit-marius-avram1309.c9users.io/register" style="border:none" width="49%" height="100%"></iframe>
+<iframe src="https://mpsit-marius-avram1309.c9users.io/login" style="border:none" width="49%" height="100%" align="top"></iframe>
+
+</body>
+</html>

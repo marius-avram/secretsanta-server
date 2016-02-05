@@ -37,7 +37,7 @@ $(document).ready(function(){
                         var groupstring = JSON.stringify(value);
                         var groupinfo = $.parseJSON(groupstring);
 
-                        $("#groupsinfo").append("<p>Name: " + groupinfo.name + " <button id=\"detailsbutton" + index + "\">Details</button>"
+                        $("#groupsinfo").append("<p>" + groupinfo.name + " <button id=\"detailsbutton" + index + "\">Details</button>"
                              + "</p>");
                         
                         $("#detailsbutton" + index).click(function(){

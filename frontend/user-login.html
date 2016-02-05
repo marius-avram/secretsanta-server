@@ -32,10 +32,13 @@ $(document).ready(function(){
                     document.cookie="username=" + userinfo.username + "; path=/";
                     document.cookie="hash=" + userinfo.hash + "; path=/";
 //                    alert(getCookie("username") + " " + getCookie("hash"));
+                    document.cookie="loginsuccessful=true; path=/";
+                    window.top.location.reload();
                 }
                 else {
                     var errorstring = JSON.stringify(responsebody.error);
                     var errorinfo = $.parseJSON(errorstring);
+                    document.cookie="loginsuccessful=false; path=/"
                     alert(errorinfo.text);
                 }
             }

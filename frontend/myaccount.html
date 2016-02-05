@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    
+    $("#logout").click(function() {
+        
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "hash=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        document.cookie = "loginsuccessful=; expires=Thu, 01 Jan 1970 00:00:00 UTC";
+        window.location.href = "https://mpsit-marius-avram1309.c9users.io/";
+        
+    });
+    
+    $("#myprofile").click(function() {
+        
+        window.location.href = "https://mpsit-marius-avram1309.c9users.io/myprofile";
+        
+    });
+    
+    $("#mygroups").click(function() {
+        
+        window.location.href = "https://mpsit-marius-avram1309.c9users.io/mygroups";
+        
+    });
+    
+})
+</script>
+</head>
+
+<body style="height:100%">
+
+<h1>Secret Santa <button id="logout" style="float: right;">Logout</button><button id="mygroups" style="float: right;">My Groups</button><button id="myprofile" style="float: right;">My Profile</button></h1><br>
+
+<iframe src="https://mpsit-marius-avram1309.c9users.io/getprofile" style="border:none" width="33%" height="100%" align="top"></iframe>
+<iframe src="https://mpsit-marius-avram1309.c9users.io/searchgroups" style="border:none" width="33%" height="100%" align="top"></iframe>
+<iframe src="https://mpsit-marius-avram1309.c9users.io/groupregister" style="border:none" width="33%" height="100%" align="top"></iframe>
+
+
+</body>
+</html>

@@ -16,7 +16,6 @@ $(document).ready(function(){
         return "";
     }
 
-    $("#myprofile").click(function(){
     	$.ajax({
             url:"https://mpsit-marius-avram1309.c9users.io/member/me",
             type: "GET",
@@ -42,14 +41,12 @@ $(document).ready(function(){
                 }
              }
         });
-    });
 })
 </script>
 </head>
 
 <body>
 
-<button id="myprofile">My Profile</button>
 <div id=userinfo></div>
 
 </body>

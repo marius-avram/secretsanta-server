@@ -32,6 +32,7 @@ $(document).ready(function(){
                     document.cookie="username=" + userinfo.username + "; path=/";
                     document.cookie="hash=" + userinfo.hash + "; path=/";
 //                    alert(getCookie("username") + " " + getCookie("hash"));
+                    alert("Account created successfully");
                 }
                 else {
                     var errorstring = JSON.stringify(responsebody.error);
